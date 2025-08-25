@@ -1,2 +1,2 @@
-# SLOTH
-my first project
+# SLOTH ( draft prelaunch )
+for team

@@ -81,7 +81,62 @@ text-align: right;
     color: rgb(123, 4, 4);
   }
 
- 
+ /* Базовые стили (для больших экранов, например, >1024px) */
+#chill {
+    background-image: url('chill.jpeg'); /* 1920x1080 для десктопов */
+    background-size: cover;
+    background-position: center;
+}
+
+#landscape {
+    background-image: url('landscape.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+#deal {
+    background-image: url('deal.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Для средних экранов (планшеты, max-width: 1024px) */
+@media (max-width: 1024px) {
+    #chill {
+        background-image: url('chill1024.jpeg'); /* 1024x768 */
+        background-size: cover;
+        background-position: center;
+    }
+    #landscape {
+        background-image: url('landscape1024.jpeg'); /* 1024x768 */
+        background-size: cover;
+        background-position: center;
+    }
+    #deal {
+        background-image: url('deal1024.jpeg'); /* 1024x768 */
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+/* Для маленьких экранов (мобильные, max-width: 600px) */
+@media (max-width: 600px) {
+    #chill {
+        background-image: url('chill600.jpeg'); /* 360x640 */
+        background-size: contain; /* или cover, в зависимости от дизайна */
+        background-position: center;
+    }
+    #landscape {
+        background-image: url('landscape600.jpeg'); /* 360x640 */
+        background-size: contain;
+        background-position: center;
+    }
+    #deal {
+        background-image: url('deal600.jpeg'); /* 360x640 */
+        background-size: contain;
+        background-position: center;
+    }
+}
 
 
 

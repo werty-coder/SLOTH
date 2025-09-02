@@ -138,8 +138,19 @@ text-align: right;
     }
 }
 
-
-
+@media (max-width: 600px) {
+    #chill, #landscape, #deal {
+        background-size: cover; /* Меняем на cover для заполнения экрана */
+        background-position: center;
+    }
+    
+    .text-overlay {
+        /* Допустим, что текст внутри этих блоков */
+        font-size: 16px; /* Уменьшаем размер шрифта для мобильных */
+        line-height: 1.4; /* Уменьшаем межстрочный интервал */
+        padding: 10px; /* Добавляем отступы вокруг текста */
+    }
+}
 </style>
 </head>
 <body>

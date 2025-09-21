@@ -52,8 +52,28 @@
             background-color: #000;
   }
 
+/* Телефоны (до 430px) */
+@media (max-width: 430px) {
+  body {
+    font-family: "Roboto", sans-serif;
+ }
+}
 
-pre  {  font-family: "Comic Sans MS", cursive, sans-serif;
+/* Планшеты и маленькие экраны (431px - 768px) */
+@media (min-width: 431px) and (max-width: 768px) {
+  body {
+    font-family: "Arial", sans-serif;   
+  }
+}
+
+/* Компьютеры (от 769px) */
+@media (min-width: 769px) {
+  body {
+    font-family: "Comic Neue", cursive, sans-serif;
+  }
+}    
+
+pre  {  
 font-size: 2.85vw;
 text-shadow: 0.23vw 0.23vw #000;
 text-align: right;

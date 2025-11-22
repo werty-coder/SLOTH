@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport"  content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="author" content="NIKI">
+    <meta name="description" content="The chillest solana project">
+    <meta name="keywords" content="solana, sloth, coin, chill">
+    <meta http-equiv="refresh" content="120">
+<title>SLOTH</title>
+<link rel="icon" href="chill.jpeg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://plugin.jup.ag/plugin-v1.js" data-preload defer></script>
+<style>
+
+.container {
+    background-image: url(space.jpg);  /* Замени на путь к изображению (локальный файл или URL) */
+    background-size: cover;  /* Масштабирование на весь контейнер */
+    height: 100vw;
+}
+
+#jupiter-plugin { position: absolute; top: 35vw; 
+    left: 60%; border: #a855f7 5px solid; 
+    border-radius: 15px; 
+    background: transparent;
+}
+
+
+.navbar {
+    display: flex; /* Горизонтальное расположение */
+    justify-content: space-between; /* Логотип слева, меню справа */
+    align-items: center; /* Выравнивание по центру */
+    background-color: black; /* Чёрный фон */
+    padding: 10px 20px; /* Отступы */
+    color: rgb(255, 255, 255); /* Белый текст */
+}
+
+.logo a {
+    font-size: 1.5em; /* Размер логотипа */
+    text-decoration: none; /* Без подчёркивания */
+    color: #a855f7; /* Фиолетовый цвет, как на фото */
+}
+
+nav ul {
+    display: flex; /* Горизонтальный список */
+    list-style: none; /* Без точек */
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 20px; /* Расстояние между пунктами */
+}
+
+nav ul li a {
+    text-decoration: none; /* Без подчёркивания */
+    color: gray; /* Серый цвет, как на фото */
+    font-size: 1em;
+}
+
+nav ul li a:hover {
+    color: white; /* Подсветка при наведении */
+}
+nav ul li a.active {
+    color: rgb(24, 209, 27); /* Или другой цвет для выделения */
+    font-weight: bold;
+}
+
+
+
+ .ticker-wrap {
+            width: 100vw;
+            overflow: hidden;
+            padding: 0.1vw 0;
+        }
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-right: 100vw; /* Для плавного перехода */
+            animation: ticker 120s linear infinite; /* Анимация прокрутки */
+           
+        }
+        .ticker:hover {
+            animation-play-state: paused; /* Остановка анимации при наведении */
+        }
+        .ticker div {
+            display: inline-block;
+            color: rgb(255, 255, 255); /* Цвет текста */
+            font-size: 4vw; /* Размер шрифта */
+            padding: 0 0.1vw;
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+         body { padding: 0; margin:0; }
+    
+  body {
+            margin: 0;
+            font-family: "Comic Sans MS";
+  }
+</style>
+</head>
+<body style="background-color: #a855f7;">
+    <header class="navbar">
+        <div class="logo">
+           <h1 style="font-size: 2vw; ;"> <img src="mascot.png" height="60px" alt="mascot" style="vertical-align: middle;">ca: FDcjznQLP6KLCgrEPF35PNpFMebmGLDhPji8TCmVdkK9</h1>
+        </div>
+        <nav>
+            <ul>
+                <li style="font-size: 1.5vw;"><a href="sloth.html" target="_self">11111</a></li>
+                <li style="font-size: 1.5vw;"><a href="chartandswap.html" target="_self">Chart&Swap</a></li>
+                <li style="font-size: 1.5vw;"><a href="sloth.html" target="_self">333333</a></li>
+                <li style="font-size: 1.5vw;"><a href="sloth.html" target="_self">4444</a></li>
+             </ul>
+        </nav>
+    </header>
+
+
+
+<div class="container">
+        <div id="jupiter-plugin"></div>  <!-- Здесь разместится виджет -->
+    </div>
+
+
+    <script>
+        window.onload = function() {
+    window.Jupiter.init({
+        displayMode: "integrated",  // Или "widget" / "modal"
+        integratedTargetId: "jupiter-plugin", 
+        formProps: {
+            initialInputMint: "So11111111111111111111111111111111111111112",  // SOL по умолчанию
+            initialOutputMint: "71Jvq4Epe2FCJ7JFSF7jLXdNk1Wy4Bhqd9iL6bEFELvg",  // Ваш токен
+            fixedOutputMint: true,  // Фиксировать вывод на ваш токен
+            initialAmount: "100000000"  // Начальная сумма SOL
+        },
+        endpoint: "https://solana-mainnet.rpc.extrnode.com"  // Опционально: быстрый RPC
+    });
+};
+    </script>
+
+ <div class="ticker-wrap" style="background-color: rgb(128, 0, 255);" >
+        <div class="ticker">
+        <div> <img src="rock-emodji.png" alt="rock-emodji" style="height: 2em; vertical-align: middle;">Chilled Relaxed Decentralised  <img src="rock-emodji.png" alt="rock-emodji" style="height: 2em; vertical-align: middle;">Chilled Relaxed Decentralised  <img src="rock-emodji.png" alt="rock-emodji" style="height: 2em; vertical-align: middle;">Chilled Relaxed Decentralised </div>
+        <div> <img src="rock-emodji.png" alt="rock-emodji" style="height: 2em; vertical-align: middle;">Chilled Relaxed Decentralised  <img src="rock-emodji.png" alt="rock-emodji" style="height: 2em; vertical-align: middle;">Chilled Relaxed Decentralised  <img src="rock-emodji.png" alt="rock-emodji" style="height: 2em; vertical-align: middle;">Chilled Relaxed Decentralised </div>
+
+
+  
+        </div>
+    </div>
+
+  <iframe
+    id="geckoterminal-embed"
+    title="GeckoTerminal Embed"
+    src="https://www.geckoterminal.com/solana/pools/71Jvq4Epe2FCJ7JFSF7jLXdNk1Wy4Bhqd9iL6bEFELvg?embed=1&info=0&swaps=0&light_chart=0&chart_type=market_cap&resolution=1s&bg_color=111827"
+    frameborder="0"
+    allow="clipboard-write"
+    allowfullscreen
+    style="width: 100vw; height: 60vw; ">
+  </iframe>
+</div>
+
+</body>
+</html>
+

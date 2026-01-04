@@ -22,23 +22,47 @@
             margin: 0;
             font-size: 2em;
         }
-        .movie-grid {
+        nav {
+            background-color: #1f1f1f;
+            padding: 10px;
+            text-align: center;
+        }
+        nav button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        nav button.active {
+            background-color: #ff0000;
+        }
+        nav button:hover {
+            background-color: #cc0000;
+        }
+        .section {
+            display: none;
+        }
+        .movie-grid, .series-grid, .episodes-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
             padding: 20px;
         }
-        .movie-card {
+        .movie-card, .series-card, .episode-card {
             background-color: #1f1f1f;
             border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
             transition: transform 0.3s;
         }
-        .movie-card:hover {
+        .movie-card:hover, .series-card:hover, .episode-card:hover {
             transform: scale(1.05);
         }
-        .movie-card img {
+        .movie-card img, .series-card img, .episode-card img {
             width: 100%;
             height: auto;
         }
@@ -80,8 +104,21 @@
         #back-btn:hover {
             background-color: #cc0000;
         }
+        #back-to-series-btn {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            display: none;
+        }
+        #back-to-series-btn:hover {
+            background-color: #cc0000;
+        }
         @media (max-width: 600px) {
-            .movie-grid {
+            .movie-grid, .series-grid, .episodes-grid {
                 grid-template-columns: 1fr;
             }
             #player-page iframe {
@@ -95,25 +132,39 @@
         <h1>Кинотеатр Резниченко</h1>
     </header>
     
-    <div id="main-page" class="movie-grid">
+    <nav>
+        <button id="movies-btn" class="active">Фильмы</button>
+        <button id="series-btn">Сериалы</button>
+    </nav>
+    
+    <div id="movies-section" class="section movie-grid" style="display: grid;">
         <!-- Фильмы будут добавлены сюда через JS -->
     </div>
     
-    <div id="player-page">
-        <button id="back-btn">Назад к фильмам</button>
+    <div id="series-section" class="section series-grid">
+        <!-- Сериалы будут добавлены сюда через JS -->
+    </div>
+    
+    <div id="episodes-section" class="section episodes-grid" style="display: none;">
+        <!-- Эпизоды будут добавлены сюда через JS -->
+    </div>
+    
+    <div id="player-page" style="display: none;">
+        <button id="back-btn">Назад</button>
+        <button id="back-to-series-btn">Назад к сериалам</button>
         <h2 id="movie-title"></h2>
         <iframe id="movie-iframe" src="" allowfullscreen></iframe>
         <p id="movie-description"></p>
     </div>
 
     <script>
-        // Массив фильмов (замени на свои данные)
+        // Массив фильмов
         const movies = [
             {
                 title: "Резиденция",
                 description: "В Белом доме назревает крупный скандал: во время официального государственного банкета происходит убийство. Чтобы вычислить убийцу, в резиденцию президента США прибывает весьма эксцентричная женщина-детектив Корделия Капп. Каждый сотрудник и житель Белого дома становится подозреваемым, и вскоре между ними начинают возникать многочисленные конфликты. Корделии предстоит изучить весь персонал резиденции и выяснить, кто именно стал виновником преступления.",
-                poster: "img/residense.png", // Путь к постеру
-                videoUrl: "https://vk.com/video_ext.php?oid=-230098113&id=456239087&hd=3" // Ссылка для iframe (например, YouTube embed)
+                poster: "img/residense.png",
+                videoUrl: "https://vk.com/video_ext.php?oid=-230098113&id=456239087&hd=3"
             },
             {
                 title: "Дым",
@@ -122,10 +173,16 @@
                 videoUrl: "https://vkvideo.ru/video_ext.php?oid=-224492019&id=456243004&hd=3"
             },
             {
-                title: "Чудовище внутри меня",
-                description: "После трагической гибели своего маленького сына известная писательница Эгги Виггс отошла от общественной жизни, не в силах писать, превратившись в призрак себя прежней. Но она находит необычный сюжет для новой книги, когда соседний дом покупает Нил Джарвис, известный магнат недвижимости, который когда-то был главным подозреваемым в исчезновении своей жены",
-                poster: "img/scary.png",
-                videoUrl: "https://vk.com/video_ext.php?oid=-212054141&id=456243286&hd=3"
+                title: "Мачо и ботан",
+                description: "В школе Мортон и Грег ненавидели друг друга, но жизнь всё расставила на свои места. Оба парня поступили в полицейскую академию, где ухитрились стать лучшими в мире друзьями. Однако у их дуэта есть одна проблема. Они полнейшие бездари.",
+                poster: "img/macho.png",
+                videoUrl: "https://vk.com/video_ext.php?oid=-168237038&id=456239508&hd=3"
+            },
+            {
+                title: "Мачо и ботан 2",
+                description: "После успешного завершения предыдущей миссии Шмидт и Дженко получают новое задание — работать под прикрытием в местном колледже, чтобы раскрыть сеть распространения нового наркотика.",
+                poster: "img/macho2.png",
+                videoUrl: "https://vk.com/video_ext.php?oid=-198329510&id=456246948&hd=3"
             },
             {
                 title: "Безумие",
@@ -134,52 +191,258 @@
                 videoUrl: "https://vk.com/video_ext.php?oid=-102326627&id=456240258&hd=3"
             },
             // Добавь больше фильмов здесь
-
-            // https://vkvideo.ru/@vhsbox?q=%D0%9A%D0%B8%D0%BD%D0%BE%D1%81%D1%82%D1%83%D0%B4%D0%B8%D1%8F
-
-            // https://rutube.ru/channel/24729767/search?channelSearchQuery=%D0%90%D0%B3%D0%B5%D0%BD%D1%82%D1%81%D1%82%D0%B2%D0%BE
-
-            // Добавить функцию для просмотра по сериям
         ];
 
-        // Функция для отображения списка фильмов
+        // Массив сериалов (каждый сериал имеет эпизоды)
+        const series = [
+            {
+                title: "Агентство",
+                description: "Сериал рассказывает о работе отдела ЦРУ в Лондоне, который занимается подготовкой и управлением агентами глубокого прикрытия.",
+                poster: "img/agency.png", // Постер для сериала (замени на реальный)
+                episodes: [
+                    {
+                        title: "Серия 1",
+                        description: "Агентство серия 1 из 10",
+                        poster: "img/agency.png", // Постер для серии (опционально, можно использовать постер сериала)
+                        videoUrl: "https://rutube.ru/play/embed/3c8d15674b2751d6f4efc60ec1c9774b/" // Ссылка на серию 1 (замени на реальную с Rutube или VK)
+                    },
+                    {
+                        title: "Серия 2",
+                        description: "Агентство серия 2 из 10",
+                        poster: "aimg/gency.png",
+                        videoUrl: "https://rutube.ru/play/embed/03f56f0e07fec90c8b2dd71c9b3971dc/"
+                    },
+                    {
+                        title: "Серия 3",
+                        description: "Агентство серия 3 из 10",
+                        poster: "img/agency.png",
+                        videoUrl: "https://rutube.ru/play/embed/046bd3c3fceef72528ea420ba7fa53a4/" 
+                    },
+                    {
+                        title: "Серия 4",
+                        description: "Агентство серия 4 из 10",
+                        poster: "img/agency.png", // Постер для серии (опционально, можно использовать постер сериала)
+                        videoUrl: "https://rutube.ru/play/embed/5c56e0010641cfb3685a601da7ce10a7/" // Ссылка на серию 1 (замени на реальную с Rutube или VK)
+                    },
+                    {
+                        title: "Серия 5",
+                        description: "Агентство серия 5 из 10",
+                        poster: "img/agency.png",
+                        videoUrl: "https://rutube.ru/play/embed/7198781424ce827fc936fa5448cd551b/"
+                    },
+                    {
+                        title: "Серия 6",
+                        description: "Агентство серия 6 из 10",
+                        poster: "img/agency.png",
+                        videoUrl: "https://rutube.ru/play/embed/e879806a52a8031f774f6a458bbbf3e8/"
+                    },
+                    {
+                        title: "Серия 7",
+                        description: "Агентство серия 7 из 10",
+                        poster: "img/agency.png", // Постер для серии (опционально, можно использовать постер сериала)
+                        videoUrl: "https://rutube.ru/play/embed/4c0cf09d5109c3f82361103d3e3909d1/" // Ссылка на серию 1 (замени на реальную с Rutube или VK)
+                    },
+                    {
+                        title: "Серия 8",
+                        description: "Агентство серия 8 из 10",
+                        poster: "img/agency.png",
+                        videoUrl: "https://rutube.ru/play/embed/6f8307d8f18891113d652d906c42f13e/"
+                    },
+                    {
+                        title: "Серия 9",
+                        description: "Агентство серия 9 из 10",
+                        poster: "img/agency.png",
+                        videoUrl: "https://rutube.ru/play/embed/f5b0c7d728306e38713f7ad3349717e9/" 
+                    },
+                    {
+                        title: "Серия 10",
+                        description: "Агентство серия 10 из 10",
+                        poster: "img/agency.png", // Постер для серии (опционально, можно использовать постер сериала)
+                        videoUrl: "https://rutube.ru/play/embed/b188bfb045e87ad68eeae1151ba27c13/" // Ссылка на серию 1 (замени на реальную с Rutube или VK)
+                    }
+                    // Добавь больше серий здесь
+                ]
+            },
+            // Добавь больше сериалов здесь, если нужно
+            
+            {
+                title: "Киностудия",
+                description: "Новоиспечённый глава киностудии отчаянно нуждается в одобрении знаменитостей. Он и его команда руководителей Continental Studios вынуждены жонглировать корпоративными требованиями и творческими амбициями, пытаясь сохранить фильмы живыми и актуальными.",
+                poster: "img/studio.png", // Постер для сериала (замени на реальный)
+                episodes: [
+                    {
+                        title: "Серия 1",
+                        description: "Киностудия серия 1 из 10",
+                        poster: "img/studio.png", // Постер для серии (опционально, можно использовать постер сериала)
+                        videoUrl: "https://rutube.ru/play/embed/951d7086d681373469dc952407fcca0c/" // Ссылка на серию 1 (замени на реальную с Rutube или VK)
+                    },
+                    {
+                        title: "Серия 2",
+                        description: "Киностудия серия 2 из 10",
+                        poster: "img/studio.png",
+                        videoUrl: "https://rutube.ru/play/embed/5f6e2eef945410c378b78d8b538d864e/"
+                    },
+                    {
+                        title: "Серия 3",
+                        description: "Киностудия серия 3 из 10",
+                        poster: "img/studio.png",
+                        videoUrl: "https://rutube.ru/play/embed/81efa53794c39ae0763b830ba449a729/" 
+                    },
+                    {
+                        title: "Серия 4",
+                        description: "Киностудия серия 4 из 10",
+                        poster: "img/studio.png", // Постер для серии (опционально, можно использовать постер сериала)
+                        videoUrl: "https://rutube.ru/play/embed/1f48aa17eda9c7050c73aaf34dddfbbe/" // Ссылка на серию 1 (замени на реальную с Rutube или VK)
+                    },
+                    {
+                        title: "Серия 5",
+                        description: "Киностудия серия 5 из 10",
+                        poster: "img/studio.png",
+                        videoUrl: "https://rutube.ru/play/embed/b82515353f14faf658ac43fe489afce5/"
+                    },
+                    {
+                        title: "Серия 6",
+                        description: "Киностудия серия 6 из 10",
+                        poster: "img/studio.png",
+                        videoUrl: "https://rutube.ru/play/embed/8a709a0bd891b60f09f58435b31bb3b1/"
+                    },
+                    {
+                        title: "Серия 7",
+                        description: "Киностудия серия 7 из 10",
+                        poster: "img/studio.png", // Постер для серии (опционально, можно использовать постер сериала)
+                        videoUrl: "https://rutube.ru/play/embed/a81e59ec67f54e1637f021ce6d9421fe/" // Ссылка на серию 1 (замени на реальную с Rutube или VK)
+                    },
+                    {
+                        title: "Серия 8",
+                        description: "Киностудия серия 8 из 10",
+                        poster: "img/studio.png",
+                        videoUrl: "https://rutube.ru/play/embed/b6bd8901a2d441a97bd05944c63fca05/"
+                    },
+                    {
+                        title: "Серия 9",
+                        description: "Киностудия серия 9 из 10",
+                        poster: "img/studio.png",
+                        videoUrl: "https://rutube.ru/play/embed/c68f8a8ce83635813a862fe6a502e826/" 
+                    },
+                    {
+                        title: "Серия 10",
+                        description: "Киностудия серия 10 из 10",
+                        poster: "img/studio.png", // Постер для серии (опционально, можно использовать постер сериала)
+                        videoUrl: "https://rutube.ru/play/embed/07e7a0114c92723f9c91df5b73bdd036/" // Ссылка на серию 1 (замени на реальную с Rutube или VK)
+                    }
+                    // Добавь больше серий здесь
+                ]
+            },
+        ];
+
+
+        // Массив сериалов (каждый сериал имеет эпизоды)
+
+        let currentSection = 'movies'; // Текущая секция: movies, series, episodes
+        let currentSeriesIndex = null; // Индекс текущего сериала для эпизодов
+
+        // Функция для отображения фильмов
         function displayMovies() {
-            const grid = document.getElementById('main-page');
+            const grid = document.getElementById('movies-section');
             grid.innerHTML = '';
             movies.forEach((movie, index) => {
-                const card = document.createElement('div');
-                card.classList.add('movie-card');
-                card.innerHTML = `
-                    <img src="${movie.poster}" alt="${movie.title}">
-                    <div class="movie-info">
-                        <h3>${movie.title}</h3>
-                        <p>${movie.description}</p>
-                    </div>
-                `;
-                card.addEventListener('click', () => showPlayer(index));
+                const card = createCard(movie, () => showPlayer(movie, 'movies'));
                 grid.appendChild(card);
             });
         }
 
-        // Функция для показа плеера
-        function showPlayer(index) {
-            const movie = movies[index];
-            document.getElementById('main-page').style.display = 'none';
-            document.getElementById('player-page').style.display = 'block';
-            document.getElementById('movie-title').textContent = movie.title;
-            document.getElementById('movie-iframe').src = movie.videoUrl;
-            document.getElementById('movie-description').textContent = movie.description;
+        // Функция для отображения сериалов
+        function displaySeries() {
+            const grid = document.getElementById('series-section');
+            grid.innerHTML = '';
+            series.forEach((ser, index) => {
+                const card = createCard(ser, () => showEpisodes(index));
+                grid.appendChild(card);
+            });
         }
 
-        // Кнопка назад
-        document.getElementById('back-btn').addEventListener('click', () => {
-            document.getElementById('player-page').style.display = 'none';
-            document.getElementById('main-page').style.display = 'grid';
-            document.getElementById('movie-iframe').src = ''; // Очистка iframe для остановки видео
-        });
+        // Функция для отображения эпизодов сериала
+        function showEpisodes(seriesIndex) {
+            currentSeriesIndex = seriesIndex;
+            const ser = series[seriesIndex];
+            const grid = document.getElementById('episodes-section');
+            grid.innerHTML = '';
+            ser.episodes.forEach((episode) => {
+                const card = createCard(episode, () => showPlayer(episode, 'episodes'));
+                grid.appendChild(card);
+            });
+            switchSection('episodes');
+        }
+
+        // Универсальная функция для создания карточки
+        function createCard(item, onClick) {
+            const card = document.createElement('div');
+            card.classList.add('movie-card'); // Используем общий класс для стилей
+            card.innerHTML = `
+                <img src="${item.poster}" alt="${item.title}">
+                <div class="movie-info">
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                </div>
+            `;
+            card.addEventListener('click', onClick);
+            return card;
+        }
+
+        // Функция для показа плеера
+        function showPlayer(item, fromSection) {
+            document.getElementById('movie-title').textContent = item.title;
+            document.getElementById('movie-iframe').src = item.videoUrl;
+            document.getElementById('movie-description').textContent = item.description;
+            switchSection('player');
+
+            // Настроить кнопку назад в зависимости от секции
+            const backBtn = document.getElementById('back-btn');
+            const backToSeriesBtn = document.getElementById('back-to-series-btn');
+            if (fromSection === 'episodes') {
+                backBtn.textContent = 'Назад к эпизодам';
+                backBtn.onclick = () => switchSection('episodes');
+                backToSeriesBtn.style.display = 'inline-block';
+                backToSeriesBtn.onclick = () => switchSection('series');
+            } else {
+                backBtn.textContent = 'Назад к ' + (fromSection === 'movies' ? 'фильмам' : 'сериалам');
+                backBtn.onclick = () => switchSection(fromSection);
+                backToSeriesBtn.style.display = 'none';
+            }
+        }
+
+        // Функция для переключения секций
+        function switchSection(section) {
+            currentSection = section;
+            const sections = ['movies-section', 'series-section', 'episodes-section', 'player-page'];
+            sections.forEach(sec => document.getElementById(sec).style.display = 'none');
+
+            if (section === 'movies') {
+                document.getElementById('movies-section').style.display = 'grid';
+                document.getElementById('movies-btn').classList.add('active');
+                document.getElementById('series-btn').classList.remove('active');
+            } else if (section === 'series') {
+                document.getElementById('series-section').style.display = 'grid';
+                document.getElementById('movies-btn').classList.remove('active');
+                document.getElementById('series-btn').classList.add('active');
+            } else if (section === 'episodes') {
+                document.getElementById('episodes-section').style.display = 'grid';
+            } else if (section === 'player') {
+                document.getElementById('player-page').style.display = 'block';
+            } else {
+                // Очистка iframe при возврате
+                document.getElementById('movie-iframe').src = '';
+            }
+        }
 
         // Инициализация
         displayMovies();
+        displaySeries();
+
+        // События для навигации
+        document.getElementById('movies-btn').addEventListener('click', () => switchSection('movies'));
+        document.getElementById('series-btn').addEventListener('click', () => switchSection('series'));
     </script>
 </body>
+</html>
 </html>
